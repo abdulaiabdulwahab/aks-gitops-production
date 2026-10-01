@@ -1,0 +1,23 @@
+aks-gitops-production/
+│
+├── platform/
+│   └── namespaces/
+│       ├── dev.yaml
+│       ├── staging.yaml
+│       ├── prod.yaml
+│       └── kustomization.yaml
+│
+└── apps/
+    └── web/
+        ├── base/
+        │   ├── deployment.yaml
+        │   ├── service.yaml
+        │   └── kustomization.yaml
+        │
+        └── overlays/
+            ├── dev/
+            │   └── kustomization.yaml
+            ├── staging/
+            │   └── kustomization.yaml
+            └── prod/
+                └── kustomization.yaml

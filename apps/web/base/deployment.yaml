@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: web
+
+spec:
+
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: web
+
+  template:
+
+    metadata:
+      labels:
+        app: web
+
+    spec:
+
+      containers:
+
+        - name: web
+
+          image: nginx:1.27-alpine
+
+          ports:
+
+            - containerPort: 80
+
+          # These values will be supplied by
+          # each environment's generated ConfigMap.
+          env:
+
+            - name: ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: release-info
+                  key: ENVIRONMENT
+
+            - name: RELEASE_VERSION
+              valueFrom:
+                configMapKeyRef:
+                  name: release-info
+                  key: RELEASE_VERSION
